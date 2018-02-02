@@ -1,0 +1,44 @@
+﻿
+@model AspNetOwin.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="">
+    <section id="loginForm">
+
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>Login</h1>
+
+            @Html.ValidationSummary(true, "", htmlAttributes: null)
+
+            <div class="">
+                @Html.TextBoxFor(model => model.Email, htmlAttributes: null)
+                @Html.ValidationMessageFor(model => model.Email, "", htmlAttributes: null)
+            </div>
+
+            <br />
+
+            <div class="">
+                @Html.PasswordFor(model => model.Password, htmlAttributes: null)
+                @Html.ValidationMessageFor(model => model.Password, "", htmlAttributes: null)
+            </div>
+
+            <br />
+
+            <div class="">
+                <button type="submit" class="">
+                    <span class=""></span>
+                    Login
+                </button>
+            </div>
+
+        }
+
+    </section>
+</div>
