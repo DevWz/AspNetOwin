@@ -1,0 +1,44 @@
+﻿
+@model AspNetOwin.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="">
+    <section id="registerForm">
+
+        @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <h1>Register</h1>
+
+            @Html.ValidationSummary(true, "", htmlAttributes: null)
+
+            <div class="">
+                @Html.TextBoxFor(model => model.Email, htmlAttributes: null)
+                @Html.ValidationMessageFor(model => model.Email, "", htmlAttributes: null)
+            </div>
+
+            <br />
+
+            <div class="">
+                @Html.PasswordFor(model => model.Password, htmlAttributes: null)
+                @Html.ValidationMessageFor(model => model.Password, "", htmlAttributes: null)
+            </div>
+
+            <br />
+
+            <div class="">
+                <button type="submit" class="">
+                    <span class=""></span>
+                    Register
+                </button>
+            </div>
+
+        }
+
+    </section>
+</div>

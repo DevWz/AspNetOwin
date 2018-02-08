@@ -35,9 +35,23 @@ namespace AspNetOwin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    // Implementar autenticação Owin aqui
-
-                    return RedirectToAction("Index");
+                    // Autenticação
+                    if (true)
+                    {
+                        if (Url.IsLocalUrl(returnUrl))
+                        {
+                            return RedirectToAction(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Preencha corretamente os campos solicitados.");
+                        return View(model);
+                    }
                 }
                 else
                 {
@@ -49,6 +63,55 @@ namespace AspNetOwin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+        }
+
+        // GET: Account/Register
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        // POST: Account/Register
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    // Autenticação
+                    if (true)
+                    {
+                        // ADD
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Uma conta já está cadastrada com este email.");
+                        return View(model);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Preencha corretamente os campos solicitados.");
+                    return View(model);
+                }
+            }
+            catch
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+        }
+
+        // POST: Account/Logout
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Logout()
+        {
+            return RedirectToAction("Index");
         }
 
     }

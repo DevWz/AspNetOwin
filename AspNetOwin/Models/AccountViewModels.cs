@@ -17,4 +17,16 @@ namespace AspNetOwin.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
+
+    public class RegisterViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+    }
 }
