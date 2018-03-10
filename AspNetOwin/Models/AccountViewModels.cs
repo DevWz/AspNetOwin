@@ -15,7 +15,7 @@ namespace AspNetOwin.Models
 
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Senha { get; set; }
     }
 
     public class RegisterViewModel
@@ -27,6 +27,6 @@ namespace AspNetOwin.Models
 
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Senha { get; set; }
     }
 }

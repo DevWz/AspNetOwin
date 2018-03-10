@@ -126,6 +126,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\estilo.css" />
     <Content Include="Content\normalize.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -136,14 +137,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201802022247537_Create.cs" />
-    <Compile Include="Migrations\201802022247537_Create.Designer.cs">
-      <DependentUpon>201802022247537_Create.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\DB\AspNetOwinContext.cs" />
-    <Compile Include="Models\DB\Client.cs" />
+    <Compile Include="Models\ApplicationSignInManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -165,9 +160,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802022247537_Create.resx">
-      <DependentUpon>201802022247537_Create.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\AspNetOwin.Core\AspNetOwin.Core.csproj">
+      <Project>{6c6ee8f8-95a0-477d-91b2-f35182a6d86a}</Project>
+      <Name>AspNetOwin.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

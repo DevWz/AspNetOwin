@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,6 +12,9 @@ namespace AspNetOwin.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+
+        ApplicationSignInManager manager = new ApplicationSignInManager();
+
 
         // GET: Account
         public ActionResult Index()
@@ -29,15 +33,18 @@ namespace AspNetOwin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     // Autenticação
-                    if (true)
+                    if (manager.PasswordCompare(model))
                     {
+
+                        // Autorização
+
                         if (Url.IsLocalUrl(returnUrl))
                         {
                             return RedirectToAction(returnUrl);
@@ -85,7 +92,7 @@ namespace AspNetOwin.Controllers
                     // Autenticação
                     if (true)
                     {
-                        // ADD
+                        manager.Register(model);
                         return RedirectToAction("Index");
                     }
                     else
@@ -111,6 +118,7 @@ namespace AspNetOwin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
+            // 
             return RedirectToAction("Index");
         }
 
